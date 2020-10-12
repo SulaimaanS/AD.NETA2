@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace AD.NETA2 {
+namespace AD.NETA2 { //TODO: Login function to check for multiple accounts that match input - probably have to loop through an array or smth
+                     // Yoink it from A1
     public partial class LoginForm : Form {
         public LoginForm() {
             InitializeComponent();
@@ -26,13 +27,16 @@ namespace AD.NETA2 {
             }
             else {
                 DialogResult YesOrNo = MessageBox.Show("We couldn't find an account with these credentials!\nWould you like to create an account?", "Failed Login", MessageBoxButtons.YesNo);
-                if (YesOrNo == DialogResult.Yes && AccountForm.IsDisposed) {
+                if (YesOrNo == DialogResult.Yes) {
+                    if (AccountForm.IsDisposed) {
                         NewAccountForm AccountForm = new NewAccountForm();
                         AccountForm.Show();
+                    }
+                    else {
+                        AccountForm.Show();
+                    }
                 }
-                else {
-                    AccountForm.Show();
-                }
+                
             }
         }
 
