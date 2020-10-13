@@ -10,8 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 
 namespace AD.NETA2 { //TODO: Flesh out a better validation system to check if all input fields are complete and check for conflicting usernames
-    public partial class NewAccountForm : Form {
-        public NewAccountForm() {
+    public partial class NewAccountWindow : Form {
+        public NewAccountWindow() {
             InitializeComponent();
         }
 
