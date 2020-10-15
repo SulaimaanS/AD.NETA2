@@ -83,6 +83,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -96,6 +97,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bold_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copy_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cut_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\File_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Info_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Italic_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenFolder_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Paste_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveAs_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Underline_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

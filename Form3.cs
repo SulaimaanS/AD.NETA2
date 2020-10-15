@@ -11,8 +11,10 @@ using System.IO;
 
 namespace AD.NETA2 {
     public partial class TextEditorWindow : Form {
-        public TextEditorWindow() {
+        LoginWindow loginWindow;
+        public TextEditorWindow(LoginWindow loginWindow) {
             InitializeComponent();
+            this.loginWindow = loginWindow;
         }
 
         private void openFile() {
@@ -36,7 +38,5 @@ namespace AD.NETA2 {
         private void openToolStripMenuItem_Click_1(object sender, EventArgs e) {
             openFile();
         }
-
-
     }
 }

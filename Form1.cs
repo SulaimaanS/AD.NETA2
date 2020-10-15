@@ -12,12 +12,11 @@ using System.Drawing.Drawing2D;
 
 namespace AD.NETA2 {
     public partial class LoginWindow : Form {
+        private string UserInput, PassInput;
+
         public LoginWindow() {
             InitializeComponent();
         }
-
-        private string UserInput, PassInput;
-        TextEditorWindow TextEditor = new TextEditorWindow();
 
         private void Login() {
             string[] Separators = new string[] { "," };
@@ -34,7 +33,7 @@ namespace AD.NETA2 {
                         MessageBox.Show("Login Successful!", "Successful Login");
                         LoginComplete = true;
                         Hide();
-                        TextEditor.Show();
+                        new TextEditorWindow(this).Show();
                         break;
 
                     }

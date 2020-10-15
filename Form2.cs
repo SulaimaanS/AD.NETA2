@@ -41,7 +41,6 @@ namespace AD.NETA2 {
             else if (String.IsNullOrEmpty(NPassInput.Text)) {
                 MessageBox.Show("Password cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
             }
             else if (String.IsNullOrEmpty(ConfirmPassInput.Text)) {
                 MessageBox.Show("Confirm password cannot be empty", "Error",
@@ -67,6 +66,7 @@ namespace AD.NETA2 {
                 File.AppendAllLines(@"Login.txt", UserData);
                 MessageBox.Show("Account Created!", "Account Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
+                loginWindow.Show();
             }
         }
 
