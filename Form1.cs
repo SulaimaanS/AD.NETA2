@@ -17,11 +17,10 @@ namespace AD.NETA2 {
         }
 
         private string UserInput, PassInput;
-        NewAccountWindow AccountForm = new NewAccountWindow();
         TextEditorWindow TextEditor = new TextEditorWindow();
 
         private void Login() {
-            string[] charSeparators = new string[] { "," };
+            string[] Separators = new string[] { "," };
             string[] Users = File.ReadAllLines(@"login.txt");
             bool LoginComplete = false;
             UserInput = LoginUserField.Text;
@@ -29,7 +28,7 @@ namespace AD.NETA2 {
             do {
                 foreach (string user in Users) {
 
-                    string[] Login = user.Split(charSeparators, StringSplitOptions.RemoveEmptyEntries);
+                    string[] Login = user.Split(Separators, StringSplitOptions.RemoveEmptyEntries);
                     if (UserInput == Login[0] && PassInput == Login[1]) {
 
                         MessageBox.Show("Login Successful!", "Successful Login");
@@ -41,22 +40,17 @@ namespace AD.NETA2 {
                     }
                 }
             }
-
             while (!LoginComplete);
+
             if (!LoginComplete) {
                 DialogResult YesOrNo = MessageBox.Show("We couldn't find an account with these credentials!\nWould you like to create an account?", "Failed Login", MessageBoxButtons.YesNo);
                 if (YesOrNo == DialogResult.Yes) {
-                    if (AccountForm.IsDisposed) {
-                        NewAccountWindow AccountForm = new NewAccountWindow();
-                        AccountForm.Show();
-                    }
-                    else {
-                        AccountForm.Show();
-                    }
+                    new NewAccountWindow(this).Show();
                 }
             }
-
         }
+
+
 
         private void LoginForm_Load(object sender, EventArgs e) {
 
@@ -67,13 +61,8 @@ namespace AD.NETA2 {
         }
 
         private void NewAccountButton_Click(object sender, EventArgs e) {
-            if (AccountForm.IsDisposed) {
-                NewAccountWindow AccountForm = new NewAccountWindow();
-                AccountForm.Show();
-            }
-            else {
-                AccountForm.Show();
-            }
+            Hide();
+            new NewAccountWindow(this).Show();
         }
 
         private void ExitButton_Click(object sender, EventArgs e) {
