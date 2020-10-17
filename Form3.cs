@@ -22,28 +22,44 @@ namespace AD.NETA2 {
         }
 
         private void openFile() {
+            string FileType = Path.GetExtension(CurrentFile);
             OpenFileDialog OpenFile = new OpenFileDialog();
             OpenFile.Title = "Open File";
             OpenFile.Filter = "Text Files (*.txt) | *.txt | All Files(*.*) | *.*";
             DialogResult result = OpenFile.ShowDialog();
             if (result == DialogResult.OK) {
                 CurrentFile = File.ReadAllText(OpenFile.FileName); //Reads the text from file  
-                RTBTextEditor.Text = CurrentFile; //Shows the reded text in the textbox  
+                Text = CurrentFile; //Shows the read text in the textbox\
+                if (FileType == ".rtf") {
+                    RTBTextEditor.LoadFile(CurrentFile, RichTextBoxStreamType.RichText);
+                }
+                else if (FileType == ".txt") {
+                    RTBTextEditor.LoadFile(CurrentFile, RichTextBoxStreamType.PlainText);
+                }
             }
-           /*else if(result == DialogResult.Cancel) {
-                OpenFile.1
-            }*/
-            
         }
 
         private void saveFile() {
-            SaveFileDialog SaveFile = new SaveFileDialog();
-            DialogResult result = SaveFile.ShowDialog(); //Opens the Show File Dialog  
-            if (result == DialogResult.OK) //Check if it's all ok  
-            {
-                string fileName = SaveFile.FileName + ".txt"; //Just to make sure the extension is .txt  
-                File.WriteAllText(fileName, RTBTextEditor.Text); //Writes the text to the file and saves it               
+            string FileType = Path.GetExtension(CurrentFile);
+            while (string.IsNullOrEmpty(CurrentFile)) {
+                SaveFileDialog SaveFile = new SaveFileDialog();
+                DialogResult result = SaveFile.ShowDialog();
+                if (result == DialogResult.OK) {
+                    if (FileType == ".rtf") {
+                        File.WriteAllText(CurrentFile, RTBTextEditor.Rtf);
+                    }
+                    else if (FileType == ".txt") {
+                        File.WriteAllText(CurrentFile, RTBTextEditor.Text);
+                    }
+                }
             }
+            if (FileType == ".rtf") {
+                File.WriteAllText(CurrentFile, RTBTextEditor.Rtf);
+            }
+            else if (FileType == ".txt") {
+                File.WriteAllText(CurrentFile, RTBTextEditor.Text);
+            }
+
         }
 
         private void setFont() {
