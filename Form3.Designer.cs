@@ -53,7 +53,7 @@
             this.TSCopyButton = new System.Windows.Forms.ToolStripButton();
             this.TSPasteButton = new System.Windows.Forms.ToolStripButton();
             this.TSCutButton = new System.Windows.Forms.ToolStripButton();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.RTBTextEditor = new System.Windows.Forms.RichTextBox();
             this.FileMenuStrip.SuspendLayout();
             this.ToolStripTop.SuspendLayout();
             this.ToolStripLeft.SuspendLayout();
@@ -107,6 +107,7 @@
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -135,21 +136,21 @@
             // 
             this.cutToolStripMenuItem.Image = global::AD.NETA2.Properties.Resources.Cut_icon;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.cutToolStripMenuItem.Text = "Cut";
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Image = global::AD.NETA2.Properties.Resources.Copy_icon;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Image = global::AD.NETA2.Properties.Resources.Paste_icon;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             // 
             // helpToolStripMenuItem
@@ -206,6 +207,7 @@
             this.TSOpenFileButton.Name = "TSOpenFileButton";
             this.TSOpenFileButton.Size = new System.Drawing.Size(28, 28);
             this.TSOpenFileButton.Text = "Open";
+            this.TSOpenFileButton.Click += new System.EventHandler(this.TSOpenFileButton_Click);
             // 
             // TSSaveButton
             // 
@@ -215,6 +217,7 @@
             this.TSSaveButton.Name = "TSSaveButton";
             this.TSSaveButton.Size = new System.Drawing.Size(28, 28);
             this.TSSaveButton.Text = "Save";
+            this.TSSaveButton.Click += new System.EventHandler(this.TSSaveButton_Click);
             // 
             // TSSaveAsButton
             // 
@@ -261,6 +264,7 @@
             // 
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(82, 31);
+            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_Click);
             // 
             // toolStripButton8
             // 
@@ -323,21 +327,22 @@
             this.TSCutButton.Size = new System.Drawing.Size(26, 28);
             this.TSCutButton.Text = "Cut";
             // 
-            // richTextBox1
+            // RTBTextEditor
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(31, 57);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(496, 229);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
+            this.RTBTextEditor.Location = new System.Drawing.Point(31, 57);
+            this.RTBTextEditor.Margin = new System.Windows.Forms.Padding(2);
+            this.RTBTextEditor.Name = "RTBTextEditor";
+            this.RTBTextEditor.Size = new System.Drawing.Size(496, 229);
+            this.RTBTextEditor.TabIndex = 3;
+            this.RTBTextEditor.Text = "";
+            this.RTBTextEditor.TextChanged += new System.EventHandler(this.RTBTextEditor_TextChanged);
             // 
             // TextEditorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 292);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.RTBTextEditor);
             this.Controls.Add(this.ToolStripLeft);
             this.Controls.Add(this.ToolStripTop);
             this.Controls.Add(this.FileMenuStrip);
@@ -389,6 +394,6 @@
         private System.Windows.Forms.ToolStripButton TSCopyButton;
         private System.Windows.Forms.ToolStripButton TSPasteButton;
         private System.Windows.Forms.ToolStripButton TSCutButton;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox RTBTextEditor;
     }
 }

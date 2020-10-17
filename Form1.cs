@@ -33,7 +33,7 @@ namespace AD.NETA2 {
                         MessageBox.Show("Login Successful!", "Successful Login");
                         LoginComplete = true;
                         Hide();
-                        new TextEditorWindow(this).Show();
+                        new TextEditorWindow(this, Login[0], Login[2]).Show();
                         break;
 
                     }
