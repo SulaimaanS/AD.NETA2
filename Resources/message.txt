@@ -1,0 +1,45 @@
+private void setFontSize() {
+            Font fileFont = RTBTextEditor.SelectionFont;
+            if (TSFontSize.SelectedIndex == 0) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 8, fileFont.Style);
+            }
+            else if (TSFontSize.SelectedIndex == 1) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 9, fileFont.Style);
+            }
+            else if (TSFontSize.SelectedIndex == 2) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 10, fileFont.Style);
+            }
+            else if (TSFontSize.SelectedIndex == 3) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 11, fileFont.Style);
+            }
+            else if (TSFontSize.SelectedIndex == 4) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 12, fileFont.Style);
+            }
+            else if (TSFontSize.SelectedIndex == 5) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 13, fileFont.Style);
+            }
+            else if (TSFontSize.SelectedIndex == 6) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 14, fileFont.Style);
+            }
+            else if (TSFontSize.SelectedIndex == 7) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 15, fileFont.Style);
+            }
+            else if (TSFontSize.SelectedIndex == 8) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 16, fileFont.Style);
+            }
+            else if (TSFontSize.SelectedIndex == 9) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 17, fileFont.Style);
+            }
+            else if (TSFontSize.SelectedIndex == 10) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 18, fileFont.Style);
+            }
+            else if (TSFontSize.SelectedIndex == 11) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 19, fileFont.Style);
+            }
+            else if (TSFontSize.SelectedIndex == 12) {
+                RTBTextEditor.SelectionFont = new Font(fileFont.FontFamily, 20, fileFont.Style);
+            }
+            else {
+                MessageBox.Show("Font size not available", "Not Available", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
