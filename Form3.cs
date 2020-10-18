@@ -22,19 +22,19 @@ namespace AD.NETA2 {
         }
 
         private void openFile() {
-            string FileType = Path.GetExtension(CurrentFile);
             OpenFileDialog OpenFile = new OpenFileDialog();
             OpenFile.Title = "Open File";
-            OpenFile.Filter = "Text Files (*.txt) | *.txt | All Files(*.*) | *.*";
+            OpenFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); ;
+            OpenFile.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             DialogResult result = OpenFile.ShowDialog();
             if (result == DialogResult.OK) {
-                CurrentFile = File.ReadAllText(OpenFile.FileName); //Reads the text from file  
-                Text = CurrentFile; //Shows the read text in the textbox\
-                if (FileType == ".rtf") {
-                    RTBTextEditor.LoadFile(CurrentFile, RichTextBoxStreamType.RichText);
-                }
-                else if (FileType == ".txt") {
+                CurrentFile = OpenFile.FileName; //Reads the text from file
+                string FileType = Path.GetExtension(CurrentFile);
+                if (FileType == ".txt") {
                     RTBTextEditor.LoadFile(CurrentFile, RichTextBoxStreamType.PlainText);
+                }
+                else {
+                    RTBTextEditor.LoadFile(CurrentFile, RichTextBoxStreamType.RichText);
                 }
             }
         }
@@ -45,11 +45,11 @@ namespace AD.NETA2 {
                 SaveFileDialog SaveFile = new SaveFileDialog();
                 DialogResult result = SaveFile.ShowDialog();
                 if (result == DialogResult.OK) {
-                    if (FileType == ".rtf") {
-                        File.WriteAllText(CurrentFile, RTBTextEditor.Rtf);
-                    }
-                    else if (FileType == ".txt") {
+                    if (FileType == ".txt") {
                         File.WriteAllText(CurrentFile, RTBTextEditor.Text);
+                    }
+                    else {
+                        File.WriteAllText(CurrentFile, RTBTextEditor.Rtf);
                     }
                 }
             }
@@ -68,6 +68,12 @@ namespace AD.NETA2 {
             if (result == DialogResult.OK) {
                 RTBTextEditor.Font = setFont.Font; //Sets the font to the one selected in the dialog  
             }
+        }
+
+        private void newFile() {
+            CurrentFile = string.Empty;
+            Text = "Text editor";
+            RTBTextEditor.Text = string.Empty;
         }
 
 

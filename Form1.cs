@@ -24,23 +24,18 @@ namespace AD.NETA2 {
             bool LoginComplete = false;
             UserInput = LoginUserField.Text;
             PassInput = LoginPasswordField.Text;
-            do {
                 foreach (string user in Users) {
 
                     string[] Login = user.Split(Separators, StringSplitOptions.RemoveEmptyEntries);
-                    if (UserInput == Login[0] && PassInput == Login[1]) {
+                    if ((UserInput == Login[0]) && (PassInput == Login[1])) {
 
                         MessageBox.Show("Login Successful!", "Successful Login");
                         LoginComplete = true;
                         Hide();
                         new TextEditorWindow(this, Login[0], Login[2]).Show();
                         break;
-
                     }
                 }
-            }
-            while (!LoginComplete);
-
             if (!LoginComplete) {
                 DialogResult YesOrNo = MessageBox.Show("We couldn't find an account with these credentials!\nWould you like to create an account?", "Failed Login", MessageBoxButtons.YesNo);
                 if (YesOrNo == DialogResult.Yes) {
