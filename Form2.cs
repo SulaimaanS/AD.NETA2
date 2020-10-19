@@ -34,11 +34,11 @@ namespace AD.NETA2 {
 
         private void newAccount() { //Creates a new account by putting input values into their respective fields and appending the Login file
             if (string.IsNullOrEmpty(NUserInput.Text)) {    //Checks if username field is empty
-                if (accountExists(NUserInput.Text)) {   //Checks if the username provided already exists
-                    MessageBox.Show("An account with this username already exists!", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
                 MessageBox.Show("Username cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            else if (accountExists(NUserInput.Text)) {   //Checks if the username provided already exists
+                MessageBox.Show("An account with this username already exists!", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (string.IsNullOrEmpty(NPassInput.Text)) {   //Checks if password field is empty
                 MessageBox.Show("Password cannot be empty", "Error",

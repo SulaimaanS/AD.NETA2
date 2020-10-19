@@ -58,7 +58,7 @@ namespace AD.NETA2 {
 
         private void saveFile() {
             if (string.IsNullOrEmpty(RTBTextEditor.Text)) { //Will not allow save to be performed if there's no content in the richtextbox
-                MessageBox.Show("File contents cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("File contents cannot be empty", "  Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if ((string.IsNullOrEmpty(CurrentFile))) { //Checks if the current file already exists and if it doesn't, use a savefile dialog when saving
                 SaveFileDialog SaveFile = new SaveFileDialog();
@@ -243,7 +243,22 @@ namespace AD.NETA2 {
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e) {    //Close the window and show the login window
-            Close();
+            if (saved) {    //Checks if there are any unsaved changes and if there aren't, clear the richtextbox
+                Close();
+            }
+            else {  //Alerts the user that there are unsaved changes
+                DialogResult result = MessageBox.Show("Unsaved changes! Would you like to save your changes?", "Unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                if (result == DialogResult.Yes) {   //Save the changes before clearing the richtextbox
+                    saveFile();
+                    Close();
+                }
+                else if (result == DialogResult.No) {   //Do not save the changes before clearing the richtextbox
+                    Close();
+                }
+                else if (result == DialogResult.Cancel) {   //Cancel the function and return to what the user was doing before
+                    return;
+                }
+            }
             loginWindow.Show();
         }
     }
