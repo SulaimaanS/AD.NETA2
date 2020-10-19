@@ -24,17 +24,17 @@ namespace AD.NETA2 {
             bool LoginComplete = false; //Flag that is either true or false depending on whether or not the user has successfully logged in or not
             UserInput = LoginUserField.Text;
             PassInput = LoginPasswordField.Text;
-                foreach (string user in Users) {    //For each entry in the array of users
-                    string[] Login = user.Split(Separators, StringSplitOptions.RemoveEmptyEntries); //Split the entry by the delimiters
-                    if ((UserInput == Login[0]) && (PassInput == Login[1])) { //Check if the values input are correct for any of the user details
+            foreach (string user in Users) {    //For each entry in the array of users
+                string[] Login = user.Split(Separators, StringSplitOptions.RemoveEmptyEntries); //Split the entry by the delimiters
+                if ((UserInput == Login[0]) && (PassInput == Login[1])) { //Check if the values input are correct for any of the user details
 
-                        MessageBox.Show("Login Successful!", "Successful Login");
-                        LoginComplete = true;
-                        Hide();
-                        new TextEditorWindow(this, Login[0], Login[2]).Show();
-                        break;
-                    }                                                                                                                                            
+                    MessageBox.Show("Login Successful!", "Successful Login");
+                    LoginComplete = true;
+                    Hide();
+                    new TextEditorWindow(this, Login[0], Login[2]).Show();
+                    break;
                 }
+            }
             if (!LoginComplete) { //If the login was unsuccessful, display this message
                 DialogResult YesOrNo = MessageBox.Show("Incorrect Credentials!", "Failed Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

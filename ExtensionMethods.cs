@@ -31,8 +31,7 @@ namespace AD.NETA2 {
 
                 //When opening the menu, check if the condition is fulfilled 
                 //in order to enable the action
-                cms.Opening += (sender, e) =>
-                {
+                cms.Opening += (sender, e) => {
                     tsmiCut.Enabled = !rtb.ReadOnly && rtb.SelectionLength > 0;
                     tsmiCopy.Enabled = rtb.SelectionLength > 0;
                     tsmiPaste.Enabled = !rtb.ReadOnly && Clipboard.ContainsText();
