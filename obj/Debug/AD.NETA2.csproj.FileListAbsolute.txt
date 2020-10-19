@@ -1,0 +1,12 @@
+C:\Users\razor\Documents\VSCom\repos\AD.NETA2\bin\Debug\AD.NETA2.exe.config
+C:\Users\razor\Documents\VSCom\repos\AD.NETA2\bin\Debug\AD.NETA2.exe
+C:\Users\razor\Documents\VSCom\repos\AD.NETA2\bin\Debug\AD.NETA2.pdb
+C:\Users\razor\Documents\VSCom\repos\AD.NETA2\obj\Debug\AD.NETA2.csprojAssemblyReference.cache
+C:\Users\razor\Documents\VSCom\repos\AD.NETA2\obj\Debug\AD.NETA2.Properties.Resources.resources
+C:\Users\razor\Documents\VSCom\repos\AD.NETA2\obj\Debug\AD.NETA2.csproj.GenerateResource.cache
+C:\Users\razor\Documents\VSCom\repos\AD.NETA2\obj\Debug\AD.NETA2.csproj.CoreCompileInputs.cache
+C:\Users\razor\Documents\VSCom\repos\AD.NETA2\obj\Debug\AD.NETA2.exe
+C:\Users\razor\Documents\VSCom\repos\AD.NETA2\obj\Debug\AD.NETA2.pdb
+C:\Users\razor\Documents\VSCom\repos\AD.NETA2\obj\Debug\AD.NETA2.LoginWindow.resources
+C:\Users\razor\Documents\VSCom\repos\AD.NETA2\obj\Debug\AD.NETA2.NewAccountWindow.resources
+C:\Users\razor\Documents\VSCom\repos\AD.NETA2\obj\Debug\AD.NETA2.TextEditorWindow.resources
