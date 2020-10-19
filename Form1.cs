@@ -19,32 +19,26 @@ namespace AD.NETA2 {
         }
 
         private void Login() {
-            string[] Separators = new string[] { "," };
-            string[] Users = File.ReadAllLines(@"login.txt");
-            bool LoginComplete = false;
+            char[] Separators = new char[] { ',' };
+            string[] Users = File.ReadAllLines(@"login.txt");   //Store all lines of Login file into array 'Users'
+            bool LoginComplete = false; //Flag that is either true or false depending on whether or not the user has successfully logged in or not
             UserInput = LoginUserField.Text;
             PassInput = LoginPasswordField.Text;
-                foreach (string user in Users) {
-
-                    string[] Login = user.Split(Separators, StringSplitOptions.RemoveEmptyEntries);
-                    if ((UserInput == Login[0]) && (PassInput == Login[1])) {
+                foreach (string user in Users) {    //For each entry in the array of users
+                    string[] Login = user.Split(Separators, StringSplitOptions.RemoveEmptyEntries); //Split the entry by the delimiters
+                    if ((UserInput == Login[0]) && (PassInput == Login[1])) { //Check if the values input are correct for any of the user details
 
                         MessageBox.Show("Login Successful!", "Successful Login");
                         LoginComplete = true;
                         Hide();
                         new TextEditorWindow(this, Login[0], Login[2]).Show();
                         break;
-                    }
+                    }                                                                                                                                            
                 }
-            if (!LoginComplete) {
-                DialogResult YesOrNo = MessageBox.Show("We couldn't find an account with these credentials!\nWould you like to create an account?", "Failed Login", MessageBoxButtons.YesNo);
-                if (YesOrNo == DialogResult.Yes) {
-                    new NewAccountWindow(this).Show();
-                }
+            if (!LoginComplete) { //If the login was unsuccessful, display this message
+                DialogResult YesOrNo = MessageBox.Show("Incorrect Credentials!", "Failed Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
 
         private void LoginForm_Load(object sender, EventArgs e) {
 

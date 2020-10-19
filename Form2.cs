@@ -15,9 +15,11 @@ namespace AD.NETA2 {
         public NewAccountWindow(LoginWindow loginWindow) {
             InitializeComponent();
             this.loginWindow = loginWindow;
+            NDatePicker.MaxDate = DateTime.Today;
+            NDatePicker.Format = DateTimePickerFormat.Custom;
         }
 
-        private bool accountExists(string Input) {
+        private bool accountExists(string Input) {  //Store all lines of Login file into array 'Users' and checks 
             string[] Separators = new string[] { "," };
             string[] Users = File.ReadAllLines(@"login.txt");
             bool Exists = false;
@@ -30,39 +32,40 @@ namespace AD.NETA2 {
             return Exists;
         }
 
-        private void newAccount() {
-            if (String.IsNullOrEmpty(NUserInput.Text)) {
-                if (accountExists(NUserInput.Text)) {
+        private void newAccount() { //Creates a new account by putting input values into their respective fields and appending the Login file
+            if (string.IsNullOrEmpty(NUserInput.Text)) {    //Checks if username field is empty
+                if (accountExists(NUserInput.Text)) {   //Checks if the username provided already exists
                     MessageBox.Show("An account with this username already exists!", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 MessageBox.Show("Username cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            else if (String.IsNullOrEmpty(NPassInput.Text)) {
+            else if (string.IsNullOrEmpty(NPassInput.Text)) {   //Checks if password field is empty
                 MessageBox.Show("Password cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            else if (String.IsNullOrEmpty(ConfirmPassInput.Text)) {
+            else if (string.IsNullOrEmpty(ConfirmPassInput.Text)) { //Checks if confirm password field is empty
                 MessageBox.Show("Confirm password cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            else if (String.IsNullOrEmpty(FNameInput.Text)) {
+            else if (string.IsNullOrEmpty(FNameInput.Text)) {   //Checks if first name field is empty
                 MessageBox.Show("First name cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            else if (String.IsNullOrEmpty(LNameInput.Text)) {
+            else if (string.IsNullOrEmpty(LNameInput.Text)) {   //Checks if last name field is empty
                 MessageBox.Show("Last name cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            else if (NCBUserType.SelectedIndex == -1) {
+            else if (NCBUserType.SelectedIndex == -1) { //Checks if the user type field is empty
                 MessageBox.Show("User type cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            else if (ConfirmPassInput.Text != NPassInput.Text) {
+            else if (ConfirmPassInput.Text != NPassInput.Text) { //Checks if both passwords provided are the same
                 MessageBox.Show("Passwords do not match!", "Password Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else {
-                string[] UserData = { $"{NUserInput.Text},{NPassInput.Text},{NCBUserType.Text},{FNameInput.Text},{LNameInput.Text},{NDatePicker.Value.ToString("dd-MM-yyyy")}" };
+            else {  //If all checks are completed and there are no errors, append the login file with the new account details and return to login
+                NDatePicker.CustomFormat = "dd-MM-yyyy";
+                string[] UserData = { $"{NUserInput.Text},{NPassInput.Text},{NCBUserType.Text},{FNameInput.Text},{LNameInput.Text},{NDatePicker.Text}" };
                 File.AppendAllLines(@"Login.txt", UserData);
                 MessageBox.Show("Account Created!", "Account Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
@@ -74,10 +77,6 @@ namespace AD.NETA2 {
 
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e) {
-
-        }
-
         private void NewAccSubButton_Click(object sender, EventArgs e) {
             newAccount();
         }
@@ -86,6 +85,5 @@ namespace AD.NETA2 {
             Close();
             loginWindow.Show();
         }
-
     }
 }

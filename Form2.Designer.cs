@@ -137,7 +137,6 @@
             this.NewUserBox.Size = new System.Drawing.Size(500, 181);
             this.NewUserBox.TabIndex = 8;
             this.NewUserBox.TabStop = false;
-            this.NewUserBox.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // NCBUserType
             // 
