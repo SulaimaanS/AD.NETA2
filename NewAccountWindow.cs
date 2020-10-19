@@ -32,35 +32,35 @@ namespace AD.NETA2 {
             return Exists;
         }
 
-        private void newAccount() { //Creates a new account by putting input values into their respective fields and appending the Login file
-            if (string.IsNullOrEmpty(NUserInput.Text)) {    //Checks if username field is empty
+        private void newAccount() { //Creates a new account by putting input values into their respective fields and appending the Login file, while checking for input errors
+            if (string.IsNullOrEmpty(NUserInput.Text)) {
                 MessageBox.Show("Username cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            else if (accountExists(NUserInput.Text)) {   //Checks if the username provided already exists
+            else if (accountExists(NUserInput.Text)) {
                 MessageBox.Show("An account with this username already exists!", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (string.IsNullOrEmpty(NPassInput.Text)) {   //Checks if password field is empty
+            else if (string.IsNullOrEmpty(NPassInput.Text)) {
                 MessageBox.Show("Password cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            else if (string.IsNullOrEmpty(ConfirmPassInput.Text)) { //Checks if confirm password field is empty
+            else if (string.IsNullOrEmpty(ConfirmPassInput.Text)) {
                 MessageBox.Show("Confirm password cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            else if (string.IsNullOrEmpty(FNameInput.Text)) {   //Checks if first name field is empty
+            else if (string.IsNullOrEmpty(FNameInput.Text)) {
                 MessageBox.Show("First name cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            else if (string.IsNullOrEmpty(LNameInput.Text)) {   //Checks if last name field is empty
+            else if (string.IsNullOrEmpty(LNameInput.Text)) {
                 MessageBox.Show("Last name cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            else if (NCBUserType.SelectedIndex == -1) { //Checks if the user type field is empty
+            else if (NCBUserType.SelectedIndex == -1) {
                 MessageBox.Show("User type cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            else if (ConfirmPassInput.Text != NPassInput.Text) { //Checks if both passwords provided are the same
+            else if (ConfirmPassInput.Text != NPassInput.Text) {
                 MessageBox.Show("Passwords do not match!", "Password Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else {  //If all checks are completed and there are no errors, append the login file with the new account details and return to login

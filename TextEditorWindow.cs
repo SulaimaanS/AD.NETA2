@@ -44,9 +44,9 @@ namespace AD.NETA2 {
             OpenFileDialog OpenFile = new OpenFileDialog();
             //Setting all properties for the openfile dialog
             OpenFile.Title = "Open File";
-            OpenFile.RestoreDirectory = true; //Restores the directory that was the last time the dialog was open
+            OpenFile.RestoreDirectory = true;
             OpenFile.Filter = "RichText Files (*.rtf)|*.rtf|Text Files (*.txt)|*.txt|All files (*.*)|*.*";
-            OpenFile.FilterIndex = 1;   //Sets the default filter to the first in the list (rtf)
+            OpenFile.FilterIndex = 1;
 
             DialogResult result = OpenFile.ShowDialog();
             if (result == DialogResult.OK) {
@@ -60,19 +60,18 @@ namespace AD.NETA2 {
             if (string.IsNullOrEmpty(RTBTextEditor.Text)) { //Will not allow save to be performed if there's no content in the richtextbox
                 MessageBox.Show("File contents cannot be empty", "  Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if ((string.IsNullOrEmpty(CurrentFile))) { //Checks if the current file already exists and if it doesn't, use a savefile dialog when saving
+            else if ((string.IsNullOrEmpty(CurrentFile))) {
                 SaveFileDialog SaveFile = new SaveFileDialog();
 
                 SaveFile.Title = "Save File";
-                SaveFile.RestoreDirectory = true; //Restores the directory that was the last time the dialog was open
-                SaveFile.Filter = "RichText Files (*.rtf)|*.rtf"; //Allows the file to only be saved in rtf
-                SaveFile.FilterIndex = 1;   //Sets the default filter to the first in the list (rtf)
-
+                SaveFile.RestoreDirectory = true;
+                SaveFile.Filter = "RichText Files (*.rtf)|*.rtf";
+                SaveFile.FilterIndex = 1;
                 DialogResult result = SaveFile.ShowDialog();
                 if (result == DialogResult.OK) {
                     saved = true;   //Set saved to true to indicate all changes have been saved
-                    CurrentFile = SaveFile.FileName;    //Gets the name and path of the file that's selected in the dialog
-                    File.WriteAllText(CurrentFile, RTBTextEditor.Rtf);  //Writes all content in the richtextbox into the selected file name as an rtf file
+                    CurrentFile = SaveFile.FileName;
+                    File.WriteAllText(CurrentFile, RTBTextEditor.Rtf);
                 }
             }
             else {  //If the current file already exists, save it without needing a savefile dialog
@@ -98,7 +97,7 @@ namespace AD.NETA2 {
         }
 
         private void newFile() {    //Clears the richtextbox to begine writing to a new file
-            if (saved) {    //Checks if there are any unsaved changes and if there aren't, clear the richtextbox
+            if (saved) {
                 CurrentFile = string.Empty;
                 RTBTextEditor.Text = string.Empty;
             }
@@ -120,7 +119,7 @@ namespace AD.NETA2 {
         }
 
         private void setFontSize() {    //Changes the font size of the selected text
-            string SelectedFontName = RTBTextEditor.SelectionFont.Name; //Gets the font name and style of the currently selected text
+            string SelectedFontName = RTBTextEditor.SelectionFont.Name;
             Font SelectedFont = RTBTextEditor.SelectionFont;
             for (int i = 8; i <= 20; i++) { //Changes the font size of the selected text depending on which value is selected in the combo box
                 if (Convert.ToInt32(TSFontSize.SelectedItem.ToString()) == i) {
@@ -130,16 +129,16 @@ namespace AD.NETA2 {
         }
 
         private void copy() {
-            if (RTBTextEditor.SelectionLength > 0) {    //Copies the currently selected text
+            if (RTBTextEditor.SelectionLength > 0) {
                 RTBTextEditor.Copy();
             }
         }
 
         private void paste() {
-            if (Clipboard.GetDataObject().GetDataPresent(DataFormats.Text) == true) {   //Check if any text is selected
+            if (Clipboard.GetDataObject().GetDataPresent(DataFormats.Text) == true) {
                 if (RTBTextEditor.SelectionLength > 0) {    //Move the currently selected text position to the end of the selection
                     RTBTextEditor.SelectionStart = RTBTextEditor.SelectionStart + RTBTextEditor.SelectionLength;
-                }   //Paste selected text 
+                }
                 RTBTextEditor.Paste();
             }
         }
@@ -154,6 +153,27 @@ namespace AD.NETA2 {
             MessageBox.Show("C# Text Editor v1.0\nAuthor: Sulaimaan Sharif", "About",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void logout() {
+            if (saved) {    //Checks if there are any unsaved changes and if there aren't, clear the richtextbox
+                Close();
+            }
+            else {
+                DialogResult result = MessageBox.Show("Unsaved changes! Would you like to save your changes?", "Unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                if (result == DialogResult.Yes) {
+                    saveFile();
+                    Close();
+                }
+                else if (result == DialogResult.No) {
+                    Close();
+                }
+                else if (result == DialogResult.Cancel) {
+                    return;
+                }
+            }
+            loginWindow.Show();
+        }
+
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e) {
             newFile();
@@ -238,28 +258,16 @@ namespace AD.NETA2 {
             return; //Does nothing for the context menu
         }
 
+
         private void RTBTextEditor_TextChanged(object sender, EventArgs e) {
             saved = false;
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e) {    //Close the window and show the login window
-            if (saved) {    //Checks if there are any unsaved changes and if there aren't, clear the richtextbox
-                Close();
-            }
-            else {  //Alerts the user that there are unsaved changes
-                DialogResult result = MessageBox.Show("Unsaved changes! Would you like to save your changes?", "Unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
-                if (result == DialogResult.Yes) {   //Save the changes before clearing the richtextbox
-                    saveFile();
-                    Close();
-                }
-                else if (result == DialogResult.No) {   //Do not save the changes before clearing the richtextbox
-                    Close();
-                }
-                else if (result == DialogResult.Cancel) {   //Cancel the function and return to what the user was doing before
-                    return;
-                }
-            }
-            loginWindow.Show();
+            logout();
+        }
+        private void TSLogoutButton_Click(object sender, EventArgs e) {
+            logout();
         }
     }
 }
